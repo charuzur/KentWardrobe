@@ -1,0 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+kent-wardrobe/node_modules
+kent-wardrobe/.pnp
+kent-wardrobe/.pnp.js
+kent-wardrobe/package-lock.json
+kent-wardrobe/yarn.lock
+
+# testing
+kent-wardrobe/coverage
+
+# production
+kent-wardrobe/build
+
+# misc
+.DS_Store
+kent-wardrobe/.env.local
+kent-wardrobe/.env.development.local
+kent-wardrobe/.env.test.local
+kent-wardrobe/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+kent-wardrobe/README.md
