@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
-import logo from './assets/logo.png';
-import mascot from "./assets/mascot.png";
-import bgImage from "./assets/bg.jpg";
+import { NavLink } from 'react-router-dom';
+import '../css/App.css';
+import logo from '../assets/logo.png';
+import mascot from "../assets/mascot.png";
+import bgImage from "../assets/bg.jpg";
 
 export default function YourCart() {
   const [cartItems, setCartItems] = useState([
@@ -25,11 +26,11 @@ export default function YourCart() {
           <img src={logo} alt="Logo" className="cart-logo" />
         </div>
         <div className="cart-nav-links">
-          <button className="cart-nav-btn">HOME</button>
-          <button className="cart-nav-btn">TRANSACTION HISTORY</button>
-          <button className="cart-nav-btn">PROFILE</button>
-          <button className="cart-nav-btn active">CART</button>
-          <button className="cart-nav-btn">LOGOUT</button>
+          <NavLink to="/" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
+          <NavLink to="/transactions" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>TRANSACTION HISTORY</NavLink>
+          <NavLink to="/profile" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>PROFILE</NavLink>
+          <NavLink to="/cart" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>CART</NavLink>
+          <NavLink to="/logout" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
         </div>
       </nav>
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
-import logo from './assets/logo.png';
-import mascot from './assets/mascot.png';
-import bgImage from "./assets/bg.jpg";
+import { NavLink } from 'react-router-dom';
+import '../css/App.css';
+import logo from '../assets/logo.png';
+import mascot from "../assets/mascot.png";
+import bgImage from "../assets/bg.jpg";
 
 export default function TransactionHistory() {
   const [transactions] = useState([
@@ -22,11 +23,11 @@ export default function TransactionHistory() {
           <img src={logo} alt="Logo" className="transaction-logo" />
         </div>
         <div className="transaction-nav-links">
-          <button className="transaction-nav-btn">HOME</button>
-          <button className="transaction-nav-btn active">TRANSACTION HISTORY</button>
-          <button className="transaction-nav-btn">PROFILE</button>
-          <button className="transaction-nav-btn">CART</button>
-          <button className="transaction-nav-btn">LOGOUT</button>
+          <NavLink to="/" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
+          <NavLink to="/transactions" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>TRANSACTION HISTORY</NavLink>
+          <NavLink to="/profile" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>PROFILE</NavLink>
+          <NavLink to="/cart" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>CART</NavLink>
+          <NavLink to="/logout" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
         </div>
       </nav>
 

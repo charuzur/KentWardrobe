@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
-import logo from "./assets/logo.png";
-import bgImage from "./assets/bg.jpg";
+import "../css/App.css";
+import logo from "../assets/logo.png";
+import bgImage from "../assets/bg.jpg";
 
 const Login = () => {
   return (

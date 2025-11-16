@@ -237,6 +237,12 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
+.cart-navbar a,
+.transaction-navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .cart-content {
   flex: 1;
   display: flex;
