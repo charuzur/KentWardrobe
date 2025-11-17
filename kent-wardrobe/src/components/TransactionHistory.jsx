@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/App.css';
-import logo from '../assets/logo.png';
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
 
@@ -20,7 +19,7 @@ export default function TransactionHistory() {
     <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})` }}>
       <nav className="transaction-navbar">
         <div className="transaction-logo-section">
-          <img src={logo} alt="Logo" className="transaction-logo" />
+          <img src={mascot} alt="Logo" className="transaction-logo" />
         </div>
         <div className="transaction-nav-links">
           <NavLink to="/" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
@@ -33,7 +32,6 @@ export default function TransactionHistory() {
 
       <div className="transaction-content">
         <div className="transaction-box">
-          <img src={mascot} alt="Mascot" className="transaction-mascot" />
           <div className="transaction-title">Transaction History</div>
 
           <div className="transaction-table-section">

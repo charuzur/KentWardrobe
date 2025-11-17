@@ -4,6 +4,7 @@ import '../css/App.css';
 import logo from '../assets/logo.png';
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
+import login from "../components/Login.jsx"
 
 export default function YourCart() {
   const [cartItems, setCartItems] = useState([
@@ -23,20 +24,19 @@ export default function YourCart() {
     <div className="cart-container" style={{ backgroundImage: `url(${bgImage})` }}>
       <nav className="cart-navbar">
         <div className="cart-logo-section">
-          <img src={logo} alt="Logo" className="cart-logo" />
+          <img src={mascot} alt="Logo" className="transaction-logo" />
         </div>
         <div className="cart-nav-links">
           <NavLink to="/" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
           <NavLink to="/transactions" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>TRANSACTION HISTORY</NavLink>
           <NavLink to="/profile" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>PROFILE</NavLink>
           <NavLink to="/cart" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>CART</NavLink>
-          <NavLink to="/logout" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
+          <NavLink to="/login" className={({ isActive }) => "cart-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
         </div>
       </nav>
 
       <div className="cart-content">
         <div className="cart-box">
-          <img src={mascot} alt="Mascot" className="cart-mascot" />
           <div className="cart-title">Your Cart</div>
 
           <div className="cart-lists-section">

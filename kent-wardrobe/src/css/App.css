@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alpha+Slab+One&display=swap');
 
 .container {
   background-size: cover;
@@ -532,3 +533,115 @@
   padding: 20px;
   font-size: 0.9rem;
 }
+
+/* Parent container */
+.frame-3 {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 180px;
+  background: rgba(7, 7, 7, 0.7);
+  border-radius: 20px;
+  margin: auto;
+}
+
+/* Lookbook image */
+.lookbook-img {
+  position: absolute;
+  width: 128px;
+  height: 263px;
+  left: -21px;
+  top: -42px;
+}
+
+/* SALE Image container */
+.sale-image {
+  position: absolute;
+  width: 219px;
+  height: 225px;
+  left: 455px;
+  top: -24px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* SALE text variations */
+.sale-text-black-top {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 59.24%;
+  font-family: 'Alfa Slab One', cursive;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 96px;
+  text-align: center;
+  color: #000000;
+  border: 2px solid #FFFFFF;
+}
+
+.sale-text-black-bottom {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 59.24%;
+  bottom: 0%;
+  font-family: 'Alfa Slab One', cursive;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 96px;
+  text-align: center;
+  color: #000000;
+  border: 2px solid #FFFFFF;
+}
+
+.sale-text-white-center {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 28.44%;
+  bottom: 30.81%;
+  font-family: 'Alfa Slab One', cursive;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 96px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/* Download image */
+.download-img {
+  position: absolute;
+  width: 253px;
+  height: 314px;
+  left: 251px;
+  top: -67px;
+  object-fit: cover;
+}
+
+/* Hip-Hop image */
+.hiphop-img {
+  position: absolute;
+  width: 735px;
+  height: 412px;
+  left: 665px;
+  top: -97px;
+  object-fit: cover;
+}
+
+/* Promo text */
+.promo-text {
+  position: absolute;
+  width: 360px;
+  height: 74px;
+  left: -3px;
+  top: 53px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFEFE;
+}
+
