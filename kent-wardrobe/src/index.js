@@ -10,12 +10,13 @@ import YourCart from './components/YourCart.jsx';
 import TransactionHistory from './components/TransactionHistory.jsx';
 import Homepage from './components/Homepage.jsx';
 import Profile from './components/Profile.jsx';
+import Checkout from './components/Checkout.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <App/>
+      <Checkout/>
     </Router>
   </React.StrictMode>
 );
