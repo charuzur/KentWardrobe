@@ -44,7 +44,7 @@ export default function Homepage() {
           objectfit: "scale-down"
         }}
       >
-        <img src={saleBanner} alt="sale banner" style={{ width: "100%", height: "180px", objectFit: "cover" }} />
+        <img src={saleBanner} alt="sale banner" style={{ width: "100%", height: "180px", objectFit: "fill" }} />
       </div>
 
       {/* PRODUCT GRID */}
