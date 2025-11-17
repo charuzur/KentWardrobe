@@ -36,11 +36,12 @@ export default function Homepage() {
       {/* SALE BANNER */}
       <div
         style={{
-          width: "95%",
+          width: "1800px",
           margin: "20px auto",
           borderRadius: "15px",
           overflow: "hidden",
           background: "rgba(0,0,0,0.5)",
+          objectfit: "scale-down"
         }}
       >
         <img src={saleBanner} alt="sale banner" style={{ width: "100%", height: "180px", objectFit: "cover" }} />
@@ -64,10 +65,11 @@ export default function Homepage() {
           { img: jordan, name: "Nike Jordans", price: "₱10,000.00" },
           { img: onitsuka, name: "Onitsuka Tokuten", price: "₱6,000.00" },
           { img: puma, name: "Puma Speedcat", price: "₱12,000.00" },
-          { img: hoodie1, name: "Strides Hoodie", price: "₱1,500.00" },
-          { img: pants, name: "White Pants", price: "₱5,500.00" },
-          { img: hoodie2, name: "Workstation Hoodie", price: "₱1,000.00" },
+          { img: hoodie1, name: "Gray Hoodie", price: "₱1,500.00" },
+          { img: pants, name: "Olive Green Pants", price: "₱5,500.00" },
+          { img: hoodie2, name: "HelloKitty Hoodie", price: "₱1,000.00" },
           { img: shirt, name: "L A Oversize Tee", price: "₱700.00" },
+          
         ].map((product, index) => (
           <div
             key={index}
