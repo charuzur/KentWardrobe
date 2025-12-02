@@ -1,0 +1,130 @@
+/* Container Layout */
+.transaction-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MAIN CONTENT */
+.transaction-content {
+  /* FIX: Expands to fill empty space, pushing footer down */
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  
+  /* Added top padding so the box doesn't slide under the big logo */
+  padding: 60px 20px; 
+}
+
+/* GLASS BOX for the Table */
+.transaction-box {
+  width: 90%;
+  max-width: 1000px;
+  
+  background: rgba(255, 255, 255, 0.50);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+  
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+}
+
+.transaction-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2e2e2e;
+}
+
+.transaction-mascot {
+  position: absolute;
+  top: -60px;
+  right: -20px;
+  width: 160px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+  z-index: 10;
+}
+
+/* TABLE STYLING */
+.transaction-table-section {
+  overflow-x: auto;
+  border-radius: 15px;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  color: #2e2e2e;
+}
+
+.transaction-table thead th {
+  text-align: left;
+  padding: 15px;
+  color: #444;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.transaction-table tbody tr {
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.transaction-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.01);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.transaction-table td {
+  padding: 20px 15px;
+  border: none;
+}
+
+.transaction-table td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.transaction-table td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* STATUS PILLS */
+.transaction-status-delivered {
+  background: rgba(84, 255, 187, 0.3);
+  color: #008f5d;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border: 1px solid #54FFBB;
+  box-shadow: 0 0 10px rgba(84, 255, 187, 0.3);
+}
+
+.transaction-status-shipping {
+  background: rgba(251, 255, 137, 0.4);
+  color: #8a7d00;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border: 1px solid #FBFF89;
+  box-shadow: 0 0 10px rgba(251, 255, 137, 0.4);
+}
+
+.transaction-footer {
+  text-align: center;
+  padding: 20px;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  margin-top: auto;
+}

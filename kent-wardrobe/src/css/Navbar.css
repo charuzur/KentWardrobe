@@ -1,0 +1,82 @@
+/* --- GLASS NAVBAR --- */
+.glass-navbar {
+  /* SUGGESTION: DEEP ONYX GLASS (Premium Dark Look) */
+  background: rgba(20, 20, 20, 0.9); /* Dark, almost opaque for readability */
+  backdrop-filter: blur(20px); /* Heavy blur to hide background noise */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle crisp white border */
+  
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  
+  padding: 0 40px; 
+  height: 90px; /* Fixed height plate */
+  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+}
+
+/* FIX: Vertically Center the Floating Logo */
+.nav-logo-section {
+  position: absolute; 
+  left: 40px;
+  
+  /* THIS CENTERS IT PERFECTLY VERTICALLY */
+  top: 50%; 
+  transform: translateY(-50%);
+  
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+}
+
+/* FIX: The Logo Image */
+.nav-logo {
+  height: 110px; /* Large size */
+  width: auto;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Glass Buttons */
+.nav-btn {
+  background: transparent;
+  /* Lighter border for visibility on dark background */
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 10px 24px;
+  border-radius: 50px;
+  color: #ffffff; /* Pure white text for contrast */
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* Active State */
+.nav-btn.active {
+  background: rgba(251, 255, 137, 0.2); /* Soft Yellow Glow */
+  color: var(--primary-yellow);
+  border-color: var(--primary-yellow);
+  box-shadow: 0 0 15px rgba(251, 255, 137, 0.4);
+}

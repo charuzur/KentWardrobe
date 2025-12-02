@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import Navbar from './Navbar'; 
 import '../css/App.css';
+import '../css/Transaction.css'; // Ensure you have the CSS file below
+
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
 
@@ -16,22 +18,14 @@ export default function TransactionHistory() {
   };
 
   return (
-    <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})` }}>
-      <nav className="transaction-navbar">
-        <div className="transaction-logo-section">
-          <img src={mascot} alt="Logo" className="transaction-logo" />
-        </div>
-        <div className="transaction-nav-links">
-          <NavLink to="/" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
-          <NavLink to="/transactions" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>TRANSACTION HISTORY</NavLink>
-          <NavLink to="/profile" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>PROFILE</NavLink>
-          <NavLink to="/cart" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>CART</NavLink>
-          <NavLink to="/logout" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
-        </div>
-      </nav>
+    <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})`, backgroundAttachment: "fixed", backgroundSize: "cover" }}>
+      
+      <Navbar />
 
       <div className="transaction-content">
         <div className="transaction-box">
+          
+          <img src={mascot} alt="Mascot" className="transaction-mascot" />
           <div className="transaction-title">Transaction History</div>
 
           <div className="transaction-table-section">
@@ -52,8 +46,10 @@ export default function TransactionHistory() {
                     <td>{transaction.item}</td>
                     <td>{transaction.quantity}</td>
                     <td>{transaction.price}</td>
-                    <td className={getStatusClass(transaction.status)}>
-                      {transaction.status}
+                    <td>
+                      <span className={getStatusClass(transaction.status)}>
+                        {transaction.status}
+                      </span>
                     </td>
                   </tr>
                 ))}

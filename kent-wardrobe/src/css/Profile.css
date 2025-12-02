@@ -1,0 +1,183 @@
+/* Container Layout */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden; 
+}
+
+.profile-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 20px;
+}
+
+/* THE COMPACT GLASS CARD */
+.profile-box {
+  width: 95%;
+  max-width: 850px;
+  
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  
+  border-radius: 24px;
+  padding: 30px;
+  
+  display: flex;
+  gap: 30px; 
+  align-items: flex-start;
+  position: relative;
+}
+
+/* LEFT SIDE: AVATAR */
+.profile-left {
+  flex: 0 0 200px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(251, 255, 137, 0.6);
+  
+  margin-bottom: 15px;
+  background-color: white; 
+}
+
+.profile-edit-btn {
+  background: transparent;
+  border: 2px solid var(--primary-yellow);
+  color: #2e2e2e;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem; 
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-edit-btn:hover {
+  background: var(--primary-yellow);
+  box-shadow: 0 0 15px rgba(251, 255, 137, 0.5);
+  transform: translateY(-2px);
+}
+
+/* RIGHT SIDE: INFO */
+.profile-right {
+  flex: 1;
+  width: 100%;
+}
+
+.profile-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.profile-header {
+  font-size: 1.8rem; 
+  font-weight: 700;
+  color: #2e2e2e;
+  margin: 0;
+}
+
+/* ACTION BUTTON (Edit Details / Save) */
+.action-btn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #555;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  color: var(--primary-yellow); /* Highlight color */
+}
+
+.action-btn.save {
+  color: #008f5d; /* Green for Save */
+}
+
+/* GRID LAYOUT */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* READ ONLY MODE */
+.field-value {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 10px 15px; 
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2e2e2e;
+  width: 100%;
+  box-sizing: border-box; 
+  min-height: 42px; /* Prevent jump when switching to input */
+  display: flex;
+  align-items: center;
+}
+
+/* EDIT MODE (INPUTS) */
+.profile-input {
+  background: #ffffff; /* Solid white for editing */
+  border: 2px solid var(--primary-yellow); /* Highlight border */
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  color: #2e2e2e;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 0 10px rgba(251, 255, 137, 0.3);
+}
+
+.profile-footer {
+  text-align: center;
+  padding: 15px;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.8);
+  margin-top: auto;
+  font-size: 0.8rem;
+}

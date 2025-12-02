@@ -1,14 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Added Link import
 import "../css/App.css";
+import "../css/Signup.css";
 import logo from "../assets/logo.png"; 
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
+
 const SignUp = () => {
   return (
-    <div
-      className="container"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
+    <div className="container" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="box">
         <div className="signup-left">
           <img src={logo} alt="Kent's Wardrobe Logo" className="logo" />
@@ -36,8 +36,13 @@ const SignUp = () => {
             <button type="submit" className="signup-btn">
               Sign Up
             </button>
-            
           </form>
+
+          {/* --- NEW SECTION: SWITCH TO LOGIN --- */}
+          <div className="form-footer">
+            <p>Already have an account? <Link to="/login" className="form-link">Login</Link></p>
+          </div>
+
         </div>
       </div>
     </div>
