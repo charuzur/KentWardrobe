@@ -11,11 +11,12 @@ import Checkout from "./components/Checkout.jsx";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Homepage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/cart" element={<YourCart />} />
+      <Route path="/checkout" element={<Checkout />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/transactions" element={<TransactionHistory />} />
-      <Route path="/" element={<Homepage />} />
     </Routes>
   );
 }

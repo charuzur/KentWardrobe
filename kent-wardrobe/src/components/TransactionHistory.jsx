@@ -1,41 +1,42 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../css/App.css';
+import '../css/Pages.css';
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
 
 export default function TransactionHistory() {
   const [transactions] = useState([
-    { id: 1, date: '01-02-2025', item: 'New Balance 550', quantity: 1, price: '$10,200.00', status: 'Delivered' },
-    { id: 2, date: '02-12-2025', item: 'Mushroom Croptop', quantity: 1, price: '$1,300.00', status: 'Delivered' },
-    { id: 3, date: '05-12-2025', item: 'Pink Star Pants', quantity: 1, price: '$7,900.00', status: 'Shipping' },
+    { id: 1, date: '01-02-2025', item: 'New Balance 550', quantity: 1, price: '₱10,200.00', status: 'Delivered' },
+    { id: 2, date: '02-12-2025', item: 'Mushroom Croptop', quantity: 1, price: '₱1,300.00', status: 'Delivered' },
+    { id: 3, date: '05-12-2025', item: 'Pink Star Pants', quantity: 1, price: '₱7,900.00', status: 'Shipping' },
   ]);
 
   const getStatusClass = (status) => {
-    return status === 'Delivered' ? 'transaction-status-delivered' : 'transaction-status-shipping';
+    return status === 'Delivered' ? 'status-delivered' : 'status-shipping';
   };
 
   return (
-    <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})` }}>
-      <nav className="transaction-navbar">
-        <div className="transaction-logo-section">
-          <img src={mascot} alt="Logo" className="transaction-logo" />
+    <div className="transaction-container-modern" style={{ backgroundImage: `url(${bgImage})` }}>
+      <nav className="cart-navbar-modern">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src={mascot} alt="Logo" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+          <h1 style={{ margin: 0, color: '#FBFF89', fontSize: '1.5rem', fontWeight: '700' }}>KentWardrobe</h1>
         </div>
-        <div className="transaction-nav-links">
-          <NavLink to="/" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>HOME</NavLink>
-          <NavLink to="/transactions" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>TRANSACTION HISTORY</NavLink>
-          <NavLink to="/profile" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>PROFILE</NavLink>
-          <NavLink to="/cart" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>CART</NavLink>
-          <NavLink to="/logout" className={({ isActive }) => "transaction-nav-btn" + (isActive ? " active" : "")}>LOGOUT</NavLink>
+        <div className="cart-nav-modern">
+          <NavLink to="/" className={({ isActive }) => "cart-nav-btn-modern" + (isActive ? " active" : "")}>HOME</NavLink>
+          <NavLink to="/transactions" className={({ isActive }) => "cart-nav-btn-modern" + (isActive ? " active" : "")}>HISTORY</NavLink>
+          <NavLink to="/profile" className={({ isActive }) => "cart-nav-btn-modern" + (isActive ? " active" : "")}>PROFILE</NavLink>
+          <NavLink to="/cart" className={({ isActive }) => "cart-nav-btn-modern" + (isActive ? " active" : "")}>CART</NavLink>
+          <NavLink to="/login" style={{ backgroundColor: 'rgba(220, 100, 100, 0.8)', color: 'white' }} className="cart-nav-btn-modern">LOGOUT</NavLink>
         </div>
       </nav>
 
-      <div className="transaction-content">
-        <div className="transaction-box">
-          <div className="transaction-title">Transaction History</div>
+      <div className="transaction-content-modern">
+        <div className="transaction-box-modern">
+          <div className="transaction-title-modern">Transaction History</div>
 
-          <div className="transaction-table-section">
-            <table className="transaction-table">
+          <div className="table-section-modern">
+            <table className="table-modern">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -63,7 +64,7 @@ export default function TransactionHistory() {
         </div>
       </div>
 
-      <footer className="transaction-footer">
+      <footer className="footer-modern">
         © 2025 KentWardrobe, Inc. All rights reserved
       </footer>
     </div>
