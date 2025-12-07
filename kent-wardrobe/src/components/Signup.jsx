@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Added Link import
+import { Link } from "react-router-dom";
 import "../css/App.css";
-import "../css/Signup.css";
+import "../css/SignUp.css";
 import logo from "../assets/logo.png"; 
 import mascot from "../assets/mascot.png";
 import bgImage from "../assets/bg.jpg";
