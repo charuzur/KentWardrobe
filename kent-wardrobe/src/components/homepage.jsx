@@ -15,6 +15,22 @@ import pants from "../assets/products/pants.png";
 import hoodie2 from "../assets/products/hoodie2.png";
 import shirt from "../assets/products/shirt.png";
 import saleBanner from "../assets/products/sale-banner.png";
+import cross from "../assets/products/cross.png";
+import nike1 from "../assets/products/nike1.png";   
+import genius from "../assets/products/genius.png"; 
+import spezial from "../assets/products/spezial.png";
+import brownpants from "../assets/products/brownpants.png"; 
+import nike2 from "../assets/products/nike2.png";
+import beigepants from "../assets/products/beigepants.png";
+import brownpants2 from "../assets/products/brownpants2.png";
+import staywild from "../assets/products/staywild.png";
+import dress from "../assets/products/dress.png";
+import snowghost from "../assets/products/snowghost.png";
+import september from "../assets/products/september.png";
+import green from "../assets/products/green.png";
+import skyblue from "../assets/products/skyblue.png";
+import cherry from "../assets/products/cherry.png";
+
 
 export default function Homepage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -37,6 +53,22 @@ export default function Homepage() {
     { id:8, img: shirt, name: "L A Oversize Tee", price: "₱700.00", category: "Women", badge: "Sale", desc: "Relaxed fit cotton t-shirt.", type: "clothing" },
     { id:9, img: mascot, name: "Mascot Limited Tee", price: "₱850.00", category: "Men", badge: "Limited", desc: "Official Kent's Wardrobe Mascot Tee.", type: "clothing" },
     { id:10, img: mascot, name: "Mascot Sticker Pack", price: "₱150.00", category: "Women", badge: "", desc: "High quality vinyl stickers.", type: "accessory" },
+    { id:11, img: cross, name: "Black Cross Tee", price: "₱250.00", category: "Men", badge: "", desc: "High quality tees.", type: "clothing" },
+    { id:12, img: nike1, name: "Nike Shoes V1", price: "₱3500.00", category: "Men", badge: "", desc: "High quality shoes.", type: "shoe" },
+    { id:13, img: genius, name: "Genius 23 Tee", price: "₱150.00", category: "Men", badge: "", desc: "High quality tees.", type: "clothing" },
+    { id:14, img: spezial, name: "Adidas Spezial V1", price: "₱4500.00", category: "Men", badge: "", desc: "Classic Special Shoes.", type: "shoe" },
+    { id:15, img: brownpants, name: "Cargo Brown Pants", price: "₱950.00", category: "Men", badge: "", desc: "Durable cargo pants with multiple pockets.", type: "clothing" },
+    { id:16, img: nike2, name: "Nike Shoes V2", price: "₱4500.00", category: "Men", badge: "", desc: "High quality shoes.", type: "shoe" },
+    { id:17, img: beigepants , name: "Beige Pants Special Edition", price: "₱1050.00", category: "Men", badge: "Special Edition", desc: "Special Edition Pants ", type: "clothing" },
+    { id:18, img: brownpants2, name: "Classic Brown Pants", price: "₱1050.00", category: "Men", badge: "", desc: "High quality and durable cargo pants", type: "clothing" },
+    { id:19, img: staywild, name: "Stay Wild Tees", price: "₱550.00", category: "Women", badge: "", desc: "High quality tees", type: "clothing" },
+    { id:20, img: dress, name: "White Elegant Dress", price: "₱1050.00", category: "Women", badge: "", desc: "High quality and elegant dress.", type: "clothing" },
+    { id:21, img: snowghost, name: "Snow Ghost Tees", price: "₱850.00", category: "Women", badge: "", desc: "High quality pink tees", type: "clothing" },
+    { id:22, img: september, name: "September Croptop Tee", price: "₱850.00", category: "Women", badge: "", desc: "High quality aesthetic croptop", type: "clothing" },
+    { id:23, img: green, name: "Green Croptop Tee", price: "₱950.00", category: "Women", badge: "", desc: "High quality aesthetic croptop", type: "clothing" },
+    { id:24, img: skyblue, name: "Sky Blue Dress", price: "₱1050.00", category: "Women", badge: "", desc: "Elegant and aesthetic dress.", type: "clothing" },
+    { id:25, img: cherry, name: "Cherry Dress", price: "₱1150.00", category: "Women", badge: "", desc: "Elegant and aesthetic dress.", type: "clothing" },
+    
   ];
 
   // Filter Logic
