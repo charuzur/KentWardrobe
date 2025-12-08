@@ -1,125 +1,69 @@
-/* Container Layout */
-.transaction-container {
-  min-height: 100vh;
+/* Container */
+.orders-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   background: #f5f1e8;
 }
 
-/* MAIN CONTENT */
-.transaction-content {
-  /* FIX: Expands to fill empty space, pushing footer down */
-  flex: 1; 
+.orders-content {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
-  
-  /* Added top padding so the box doesn't slide under the big logo */
-  padding: 30px 20px; 
+  align-items: flex-start;
+  padding: 30px 20px;
 }
 
-/* GLASS BOX for the Table */
-.transaction-box {
+/* Main Box */
+.orders-box {
   width: 100%;
   max-width: 1000px;
-  
   background: #f9f6f0;
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
   padding: 40px;
-  position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.transaction-title {
+.orders-title {
   font-size: 2.2rem;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 30px;
   color: #3d2817;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.transaction-mascot {
-  position: absolute;
-  top: -60px;
-  right: -20px;
-  width: 160px;
-  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
-  z-index: 10;
+/* No Orders State */
+.no-orders {
+  text-align: center;
+  padding: 60px 20px;
 }
 
-/* TABLE STYLING */
-.transaction-table-section {
-  overflow-x: auto;
-  border-radius: 15px;
+.no-orders p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 20px;
 }
 
-.transaction-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 10px;
-  color: #2e2e2e;
-}
-
-.transaction-table thead th {
-  text-align: left;
-  padding: 15px;
-  color: #444;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-}
-
-.transaction-table tbody tr {
-  background: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
-}
-
-.transaction-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.01);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.transaction-table td {
-  padding: 20px 15px;
+.btn-shop-now {
+  padding: 12px 30px;
+  background: #2ecc71;
   border: none;
-}
-
-.transaction-table td:first-child {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
-.transaction-table td:last-child {
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
-/* STATUS PILLS */
-.transaction-status-delivered {
-  background: rgba(84, 255, 187, 0.3);
-  color: #008f5d;
-  padding: 8px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
   font-weight: 700;
-  font-size: 0.8rem;
-  border: 1px solid #54FFBB;
-  box-shadow: 0 0 10px rgba(84, 255, 187, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
 }
 
-.transaction-status-shipping {
-  background: rgba(251, 255, 137, 0.4);
-  color: #8a7d00;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.8rem;
-  border: 1px solid #FBFF89;
-  box-shadow: 0 0 10px rgba(251, 255, 137, 0.4);
+.btn-shop-now:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 204, 113, 0.4);
 }
 
+/* Orders List */
 .orders-list {
   display: flex;
   flex-direction: column;
@@ -358,22 +302,23 @@
   transform: translateY(-2px);
 }
 
-.transaction-footer {
+/* Footer */
+.orders-footer {
   text-align: center;
   padding: 20px;
   color: #999;
   background: #3d2817;
-  width: 100%;
+  font-size: 0.85rem;
   margin-top: auto;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .transaction-box {
+  .orders-box {
     padding: 20px;
   }
 
-  .transaction-title {
+  .orders-title {
     font-size: 1.8rem;
   }
 

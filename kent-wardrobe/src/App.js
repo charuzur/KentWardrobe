@@ -8,7 +8,7 @@ import TransactionHistory from './components/TransactionHistory.jsx';
 import Homepage from './components/Homepage.jsx';
 import Profile from "./components/Profile.jsx";
 import Checkout from "./components/Checkout.jsx";
-import Favorites from "./components/Favorites.jsx"; 
+import Favorites from "./components/Favorites.jsx";
 
 function App() {
   return (

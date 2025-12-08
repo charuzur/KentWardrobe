@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar'; 
+import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 import '../css/App.css';
-import '../css/Transaction.css';
+import '../css/Orders.css';
 import bgImage from "../assets/bg.jpg";
 
-export default function TransactionHistory() {
+export default function Orders() {
+  const navigate = useNavigate();
+  
+  // Sample orders data - in a real app, this would come from a database
   const [orders] = useState([
     {
       id: 'ORD-1733659200000',
@@ -103,18 +107,21 @@ export default function TransactionHistory() {
   };
 
   return (
-    <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})`, backgroundAttachment: "fixed", backgroundSize: "cover" }}>
+    <div className="orders-container" style={{ backgroundImage: `url(${bgImage})`, backgroundAttachment: "fixed", backgroundSize: "cover" }}>
       
       <Navbar />
 
-      <div className="transaction-content">
-        <div className="transaction-box">
+      <div className="orders-content">
+        <div className="orders-box">
           
-          <div className="transaction-title">Order History</div>
+          <div className="orders-title">My Orders</div>
 
           {orders.length === 0 ? (
             <div className="no-orders">
               <p>You haven't placed any orders yet.</p>
+              <button className="btn-shop-now" onClick={() => navigate('/')}>
+                Start Shopping
+              </button>
             </div>
           ) : (
             <div className="orders-list">
@@ -208,7 +215,7 @@ export default function TransactionHistory() {
 
                       {/* ACTIONS */}
                       <div className="order-actions">
-                        <button className="btn-reorder">🔄 Reorder</button>
+                        <button className="btn-reorder">Reorder</button>
                         {order.status !== 'Delivered' && (
                           <button className="btn-cancel-order">✕ Cancel Order</button>
                         )}
@@ -225,8 +232,8 @@ export default function TransactionHistory() {
         </div>
       </div>
 
-      <footer className="transaction-footer">
-        &copy; 2025 KentWardrobe, Inc. All rights reserved
+      <footer className="orders-footer">
+        © 2025 KentWardrobe, Inc. All rights reserved
       </footer>
     </div>
   );

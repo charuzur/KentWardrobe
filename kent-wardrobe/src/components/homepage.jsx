@@ -27,16 +27,16 @@ export default function Homepage() {
   const [color, setColor] = useState("black");
 
   const products = [
-    { id:1, img: vans, name: "Vans Old Skool", price: "₱1,000.00", category: "Men", badge: "Hot", desc: "Classic skate shoe with iconic sidestripe." },
-    { id:2, img: jordan, name: "Nike Jordans", price: "₱10,000.00", category: "Men", badge: "New", desc: "High-top retro basketball sneakers." },
-    { id:3, img: onitsuka, name: "Onitsuka Tokuten", price: "₱6,000.00", category: "Women", badge: "", desc: "Vintage style indoor court shoe." },
-    { id:4, img: puma, name: "Puma Speedcat", price: "₱12,000.00", category: "Women", badge: "Sale", desc: "Motorsport-inspired low profile sneakers." },
-    { id:5, img: hoodie1, name: "Gray Hoodie", price: "₱1,500.00", category: "Men", badge: "", desc: "Comfortable fleece pullover hoodie." },
-    { id:6, img: pants, name: "Olive Green Pants", price: "₱5,500.00", category: "Men", badge: "", desc: "Durable cargo pants with multiple pockets." },
-    { id:7, img: hoodie2, name: "HelloKitty Hoodie", price: "₱1,000.00", category: "Women", badge: "New", desc: "Cute graphic hoodie for fans." },
-    { id:8, img: shirt, name: "L A Oversize Tee", price: "₱700.00", category: "Women", badge: "Sale", desc: "Relaxed fit cotton t-shirt." },
-    { id:9, img: mascot, name: "Mascot Limited Tee", price: "₱850.00", category: "Men", badge: "Limited", desc: "Official Kent's Wardrobe Mascot Tee." },
-    { id:10, img: mascot, name: "Mascot Sticker Pack", price: "₱150.00", category: "Women", badge: "", desc: "High quality vinyl stickers." },
+    { id:1, img: vans, name: "Vans Old Skool", price: "₱1,000.00", category: "Men", badge: "Hot", desc: "Classic skate shoe with iconic sidestripe.", type: "shoe" },
+    { id:2, img: jordan, name: "Nike Jordans", price: "₱10,000.00", category: "Men", badge: "New", desc: "High-top retro basketball sneakers.", type: "shoe" },
+    { id:3, img: onitsuka, name: "Onitsuka Tokuten", price: "₱6,000.00", category: "Women", badge: "", desc: "Vintage style indoor court shoe.", type: "shoe" },
+    { id:4, img: puma, name: "Puma Speedcat", price: "₱12,000.00", category: "Women", badge: "Sale", desc: "Motorsport-inspired low profile sneakers.", type: "shoe" },
+    { id:5, img: hoodie1, name: "Gray Hoodie", price: "₱1,500.00", category: "Men", badge: "", desc: "Comfortable fleece pullover hoodie.", type: "clothing" },
+    { id:6, img: pants, name: "Olive Green Pants", price: "₱5,500.00", category: "Men", badge: "", desc: "Durable cargo pants with multiple pockets.", type: "clothing" },
+    { id:7, img: hoodie2, name: "HelloKitty Hoodie", price: "₱1,000.00", category: "Women", badge: "New", desc: "Cute graphic hoodie for fans.", type: "clothing" },
+    { id:8, img: shirt, name: "L A Oversize Tee", price: "₱700.00", category: "Women", badge: "Sale", desc: "Relaxed fit cotton t-shirt.", type: "clothing" },
+    { id:9, img: mascot, name: "Mascot Limited Tee", price: "₱850.00", category: "Men", badge: "Limited", desc: "Official Kent's Wardrobe Mascot Tee.", type: "clothing" },
+    { id:10, img: mascot, name: "Mascot Sticker Pack", price: "₱150.00", category: "Women", badge: "", desc: "High quality vinyl stickers.", type: "accessory" },
   ];
 
   // Filter Logic
@@ -50,8 +50,18 @@ export default function Homepage() {
   const openModal = (product) => {
     setSelectedProduct(product);
     setQty(1); // Reset qty
-    setSize("M"); // Reset size
+    setSize(product.type === "shoe" ? "7" : "M"); // Reset size based on product type
     setColor("black"); // Reset color
+  };
+
+  // Get size options based on product type
+  const getSizeOptions = () => {
+    if (!selectedProduct) return [];
+    if (selectedProduct.type === "shoe") {
+      return ["5", "6", "7", "7.5", "8", "8.5", "9", "9.5", "10", "11", "12"];
+    } else {
+      return ["S", "M", "L", "XL"];
+    }
   };
 
   // CLOSE MODAL
@@ -130,7 +140,7 @@ export default function Homepage() {
               {/* Size Selector */}
               <span className="option-label">Select Size</span>
               <div className="size-selector">
-                {["S", "M", "L", "XL"].map(s => (
+                {getSizeOptions().map(s => (
                   <button 
                     key={s} 
                     className={`size-btn ${size === s ? "selected" : ""}`}
@@ -138,19 +148,6 @@ export default function Homepage() {
                   >
                     {s}
                   </button>
-                ))}
-              </div>
-
-              {/* Color Selector */}
-              <span className="option-label">Select Color</span>
-              <div className="color-selector">
-                {["black", "red", "white", "blue"].map(c => (
-                  <div 
-                    key={c} 
-                    className={`color-btn ${color === c ? "selected" : ""}`}
-                    style={{backgroundColor: c}}
-                    onClick={() => setColor(c)}
-                  />
                 ))}
               </div>
 
