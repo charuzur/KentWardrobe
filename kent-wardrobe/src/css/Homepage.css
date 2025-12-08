@@ -261,7 +261,7 @@
   width: 90%;
   max-width: 900px;
   
-  /* UPDATED: Slightly darker, more opaque background for contrast */
+  /* Slightly darker, more opaque background for contrast */
   background: rgba(240, 240, 240, 0.95); 
   border: 1px solid rgba(255, 255, 255, 0.5);
   
@@ -328,10 +328,9 @@
   line-height: 1.2;
 }
 
-/* UPDATED: Price color is now black */
 .modal-price {
   font-size: 1.5rem;
-  color: #2e2e2e; /* Black color */
+  color: #2e2e2e; /* Black Color */
   font-weight: 700;
   margin-bottom: 15px;
 }
@@ -452,12 +451,13 @@
   box-shadow: 0 8px 25px rgba(251, 255, 137, 0.6);
 }
 
+/* FIXED FOOTER (Consistent with other pages) */
 .home-footer {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
-  color: #ccc;
   text-align: center;
-  padding: 20px;
-  width: 100%;
+  padding: 15px;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.8);
   margin-top: auto;
+  font-size: 0.8rem;
+  width: 100%;
 }

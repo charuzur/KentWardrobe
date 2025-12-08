@@ -1,110 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'; 
 import '../css/App.css';
-import '../css/Transaction.css';
-import bgImage from "../assets/bg.jpg";
+import '../css/Transaction.css'; 
+import '../css/Toast.css'; 
+
+// NO IMAGE IMPORTS
 
 export default function TransactionHistory() {
-  const [orders] = useState([
-    {
-      id: 'ORD-1733659200000',
-      date: 'December 8, 2024',
-      time: '02:00 PM',
-      status: 'Delivered',
-      items: [
-        { name: 'New Balance 550', quantity: 1, price: '₱1,000.00' },
-        { name: 'Puma Speedcat', quantity: 1, price: '₱12,000.00' }
-      ],
-      subtotal: 13000,
-      shippingFee: 500,
-      total: 13500,
-      paymentMethod: 'Credit/Debit Card',
-      address: '123 Main Street, Cebu City, Philippines 6000',
-      trackingNumber: 'TRK-2024-001'
-    },
-    {
-      id: 'ORD-1733572800000',
-      date: 'December 7, 2024',
-      time: '10:30 AM',
-      status: 'In Transit',
-      items: [
-        { name: 'Nike Air Max', quantity: 2, price: '₱5,500.00' }
-      ],
-      subtotal: 11000,
-      shippingFee: 500,
-      total: 11500,
-      paymentMethod: 'GCash',
-      address: '456 Business Ave, Cebu City, Philippines 6000',
-      trackingNumber: 'TRK-2024-002'
-    },
-    {
-      id: 'ORD-1733486400000',
-      date: 'December 6, 2024',
-      time: '03:15 PM',
-      status: 'Processing',
-      items: [
-        { name: 'Adidas Ultraboost', quantity: 1, price: '₱8,000.00' }
-      ],
-      subtotal: 8000,
-      shippingFee: 500,
-      total: 8500,
-      paymentMethod: 'Cash on Delivery',
-      address: '123 Main Street, Cebu City, Philippines 6000',
-      trackingNumber: 'TRK-2024-003'
-    },
-    {
-      id: 'ORD-1733400000000',
-      date: 'December 5, 2024',
-      time: '11:45 AM',
-      status: 'Delivered',
-      items: [
-        { name: 'Converse Chuck Taylor', quantity: 1, price: '₱2,500.00' },
-        { name: 'Socks Pack', quantity: 3, price: '₱300.00' }
-      ],
-      subtotal: 3100,
-      shippingFee: 500,
-      total: 3600,
-      paymentMethod: 'Credit/Debit Card',
-      address: '456 Business Ave, Cebu City, Philippines 6000',
-      trackingNumber: 'TRK-2024-004'
-    }
-  ]);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [expandedOrderId, setExpandedOrderId] = useState(null);
 
-  const [expandedOrder, setExpandedOrder] = useState(null);
+  const [buyAgainOrder, setBuyAgainOrder] = useState(null); 
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
-  const getStatusColor = (status) => {
-    switch(status) {
-      case 'Delivered':
-        return '#2ecc71';
-      case 'In Transit':
-        return '#f39c12';
-      case 'Processing':
-        return '#3498db';
-      case 'Cancelled':
-        return '#e74c3c';
-      default:
-        return '#95a5a6';
+  const showToast = (message, type) => {
+    setNotification({ message, type });
+    setTimeout(() => {
+      setNotification({ message: "", type: "" });
+    }, 3000);
+  };
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const userEmail = storedUser ? storedUser.email : "guest@example.com";
+
+    fetch(`http://localhost:8080/api/orders/${userEmail}`)
+      .then(response => response.json())
+      .then(data => {
+        const sortedData = data.sort((a, b) => {
+           const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+           const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+           return dateB - dateA; 
+        });
+        setOrders(sortedData);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching orders:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  const toggleDetails = (id) => {
+    if (expandedOrderId === id) {
+      setExpandedOrderId(null); 
+    } else {
+      setExpandedOrderId(id); 
     }
   };
 
-  const getStatusIcon = (status) => {
-    switch(status) {
-      case 'Delivered':
-        return '✓';
-      case 'In Transit':
-        return '📦';
-      case 'Processing':
-        return '⏳';
-      case 'Cancelled':
-        return '✕';
-      default:
-        return '•';
-    }
+  const initiateBuyAgain = (order) => {
+    setBuyAgainOrder(order); 
+  };
+
+  const confirmBuyAgain = () => {
+    if (!buyAgainOrder) return;
+
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const itemsToAdd = buyAgainOrder.items.map(item => ({
+        id: Date.now() + Math.random(), 
+        name: item.productName,
+        price: item.price,
+        img: item.productImg,
+        quantity: item.quantity,
+        size: item.size || "M", 
+        color: item.color || "Standard" 
+    }));
+
+    const newCart = [...currentCart, ...itemsToAdd];
+    localStorage.setItem("cart", JSON.stringify(newCart));
+
+    showToast("Items added to Cart!", "success");
+    setBuyAgainOrder(null); 
+  };
+
+  const getStatusClass = (status) => {
+    const s = (status || "").toLowerCase();
+    if (s === 'delivered') return 'transaction-status-delivered';
+    if (s === 'shipping' || s === 'in transit') return 'transaction-status-shipping';
+    return 'transaction-status-processing';
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
   };
 
   return (
-    <div className="transaction-container" style={{ backgroundImage: `url(${bgImage})`, backgroundAttachment: "fixed", backgroundSize: "cover" }}>
+    <div className="transaction-container" style={{ backgroundImage: "url('/assets/bg.jpg')", backgroundAttachment: "fixed", backgroundSize: "cover" }}>
       
+      {notification.message && (
+        <div className={`glass-toast toast-${notification.type}`}>
+           {notification.type === 'success' ? '✓' : '✕'} {notification.message}
+        </div>
+      )}
+
       <Navbar />
 
       <div className="transaction-content">
@@ -112,121 +106,141 @@ export default function TransactionHistory() {
           
           <div className="transaction-title">Order History</div>
 
-          {orders.length === 0 ? (
-            <div className="no-orders">
-              <p>You haven't placed any orders yet.</p>
+          {loading ? (
+            <div style={{textAlign: 'center', padding: '20px', color: '#555'}}>Loading history...</div>
+          ) : orders.length === 0 ? (
+            <div style={{textAlign: 'center', padding: '40px', color: '#555'}}>
+              <h3>No orders found.</h3>
+              <p>Items you purchase will appear here.</p>
             </div>
           ) : (
-            <div className="orders-list">
-              {orders.map((order) => (
-                <div key={order.id} className="order-card">
-                  
-                  {/* ORDER HEADER */}
-                  <div 
-                    className="order-header"
-                    onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}
-                  >
-                    <div className="order-header-left">
-                      <div className="order-id">Order #{order.id.split('-')[1]}</div>
-                      <div className="order-date">{order.date} at {order.time}</div>
-                    </div>
+            <div className="transaction-table-section">
+              <table className="transaction-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <React.Fragment key={order.id}>
+                      {/* MAIN ROW */}
+                      <tr className={expandedOrderId === order.id ? "active-row" : ""}>
+                        <td style={{fontWeight: '700', color: '#2e2e2e'}}>
+                           {order.trackingNumber || `#${order.id}`}
+                        </td>
+                        <td style={{color: '#666'}}>{formatDate(order.createdAt)}</td>
+                        <td style={{fontWeight: 'bold'}}>₱{(order.totalAmount || 0).toLocaleString()}</td>
+                        <td>
+                          <span className={getStatusClass(order.status)}>
+                            {order.status || "Pending"}
+                          </span>
+                        </td>
+                        <td>
+                          <button 
+                            className="btn-view-details" 
+                            onClick={() => toggleDetails(order.id)}
+                          >
+                            {expandedOrderId === order.id ? "Hide Details" : "View Details"}
+                          </button>
+                        </td>
+                      </tr>
 
-                    <div className="order-header-right">
-                      <div 
-                        className="order-status"
-                        style={{ backgroundColor: getStatusColor(order.status) }}
-                      >
-                        <span className="status-icon">{getStatusIcon(order.status)}</span>
-                        <span className="status-text">{order.status}</span>
-                      </div>
-                      <div className="order-total">₱{order.total.toLocaleString()}</div>
-                      <div className="expand-icon">
-                        {expandedOrder === order.id ? '▲' : '▼'}
-                      </div>
-                    </div>
-                  </div>
+                      {/* EXPANDED DETAILS ROW */}
+                      {expandedOrderId === order.id && (
+                        <tr className="details-row">
+                          <td colSpan="5">
+                            <div className="order-details-panel">
+                              
+                              <h4 className="details-header">Items</h4>
+                              <div className="details-items-grid">
+                                {(order.items || []).map((item, idx) => (
+                                  <div key={idx} className="details-item-card">
+                                    <img 
+                                      src={item.productImg || "/assets/mascot.png"} 
+                                      alt={item.productName} 
+                                      className="details-img" 
+                                      onError={(e) => e.target.src = "/assets/mascot.png"} 
+                                    />
+                                    <div className="details-info">
+                                      <div className="details-name">{item.productName}</div>
+                                      <div className="details-meta">Qty: {item.quantity} | Size: {item.size || "N/A"}</div>
+                                    </div>
+                                    <div className="details-price">₱{(item.price || 0).toLocaleString()}</div>
+                                  </div>
+                                ))}
+                              </div>
 
-                  {/* ORDER DETAILS - EXPANDED */}
-                  {expandedOrder === order.id && (
-                    <div className="order-details">
-                      
-                      {/* ITEMS */}
-                      <div className="detail-section">
-                        <h4>Items</h4>
-                        <table className="items-table">
-                          <thead>
-                            <tr>
-                              <th>Product</th>
-                              <th>Quantity</th>
-                              <th>Price</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {order.items.map((item, idx) => (
-                              <tr key={idx}>
-                                <td>{item.name}</td>
-                                <td>{item.quantity}</td>
-                                <td>{item.price}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
+                              <div className="details-divider"></div>
 
-                      {/* PRICING */}
-                      <div className="detail-section pricing">
-                        <div className="price-row">
-                          <span>Subtotal:</span>
-                          <span>₱{order.subtotal.toLocaleString()}</span>
-                        </div>
-                        <div className="price-row">
-                          <span>Shipping Fee:</span>
-                          <span>₱{order.shippingFee.toLocaleString()}</span>
-                        </div>
-                        <div className="price-row total">
-                          <span>Total:</span>
-                          <span>₱{order.total.toLocaleString()}</span>
-                        </div>
-                      </div>
+                              <div className="details-info-grid">
+                                <div className="info-block">
+                                  <span className="info-label">Delivery Address</span>
+                                  <div className="info-value">{order.address}</div>
+                                  <div className="info-value">{order.contactNumber}</div>
+                                </div>
+                                <div className="info-block">
+                                  <span className="info-label">Payment Method</span>
+                                  <div className="info-value">{order.paymentMethod}</div>
+                                </div>
+                                <div className="info-block summary-block">
+                                  <div className="summary-line">
+                                    <span>Shipping:</span>
+                                    <span>₱{(order.shippingFee || 0).toLocaleString()}</span>
+                                  </div>
+                                  <div className="summary-line total">
+                                    <span>Total:</span>
+                                    <span>₱{(order.totalAmount || 0).toLocaleString()}</span>
+                                  </div>
+                                </div>
+                              </div>
 
-                      {/* DELIVERY INFO */}
-                      <div className="detail-section">
-                        <h4>Delivery Information</h4>
-                        <div className="info-row">
-                          <span className="label">Address:</span>
-                          <span className="value">{order.address}</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="label">Payment Method:</span>
-                          <span className="value">{order.paymentMethod}</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="label">Tracking Number:</span>
-                          <span className="value tracking">{order.trackingNumber}</span>
-                        </div>
-                      </div>
+                              <div className="details-actions">
+                                <button className="btn-reorder" onClick={() => initiateBuyAgain(order)}>
+                                  🔄 Buy Again
+                                </button>
+                              </div>
 
-                      {/* ACTIONS */}
-                      <div className="order-actions">
-                        <button className="btn-reorder">🔄 Reorder</button>
-                        {order.status !== 'Delivered' && (
-                          <button className="btn-cancel-order">✕ Cancel Order</button>
-                        )}
-                      </div>
-
-                    </div>
-                  )}
-
-                </div>
-              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
 
         </div>
       </div>
 
+      {/* --- PREMIUM CONFIRMATION MODAL --- */}
+      {buyAgainOrder && (
+        <div className="modal-overlay" onClick={() => setBuyAgainOrder(null)}>
+          <div className="confirmation-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="confirm-icon-wrapper">
+                {/* Shopping Bag Icon or Question Mark */}
+                <span>🛍️</span>
+            </div>
+            
+            <h3>Buy Again?</h3>
+            <p>This will add all items from Order <b>{buyAgainOrder.trackingNumber || buyAgainOrder.id}</b> to your cart.</p>
+            
+            <div className="modal-actions-row">
+              <button className="btn-modal-cancel" onClick={() => setBuyAgainOrder(null)}>Cancel</button>
+              <button className="btn-modal-confirm" onClick={confirmBuyAgain}>Yes, Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <footer className="transaction-footer">
-        &copy; 2025 KentWardrobe, Inc. All rights reserved
+        © 2025 KentWardrobe, Inc. All rights reserved
       </footer>
     </div>
   );

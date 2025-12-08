@@ -9,6 +9,7 @@ import Homepage from './components/Homepage.jsx';
 import Profile from "./components/Profile.jsx";
 import Checkout from "./components/Checkout.jsx";
 import Favorites from "./components/Favorites.jsx";
+import AdminDashboard from "./components/AdminDashboard.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/transactions" element={<TransactionHistory />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/favorites" element={<Favorites />} />
+      <Route path="/admin" element={<AdminDashboard />} />
     </Routes>
   );
 }
