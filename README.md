@@ -9,7 +9,7 @@ To get the project running locally, please follow these steps exactly:
 1. Clone the Repository
 
 # Clone the project
-git clone https://github.com/your-username/kent-wardrobe.git
+git clone https://github.com/charuzur/KentWardrobe-Frontend
 
 # Enter the directory
 cd kent-wardrobe
