@@ -33,14 +33,32 @@ export default function Homepage() {
   useEffect(() => {
     fetch("http://localhost:8080/api/products")
       .then(res => res.json())
-      .then(data => { setProducts(data); setLoading(false); })
+      .then(data => { 
+        // Safety check for products
+        if (Array.isArray(data)) {
+          setProducts(data); 
+        }
+        setLoading(false); 
+      })
       .catch(err => console.error(err));
 
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
+    if (user && user.id) {
         fetch(`http://localhost:8080/api/wishlist/${user.id}`)
           .then(res => res.json())
-          .then(data => setWishlistIds(data.map(p => p.id)));
+          .then(data => {
+            // FIX: Only map if data is an array
+            if (Array.isArray(data)) {
+                setWishlistIds(data.map(p => p.id));
+            } else {
+                console.error("Wishlist data is not an array:", data);
+                setWishlistIds([]); // Set empty if error
+            }
+          })
+          .catch(err => {
+            console.error("Wishlist fetch failed:", err);
+            setWishlistIds([]);
+          });
     }
   }, []);
 

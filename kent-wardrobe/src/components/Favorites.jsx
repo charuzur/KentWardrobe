@@ -27,10 +27,15 @@ export default function Favorites() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
+    if (user && user.id) {
+        setFavorites([]); // Clear state immediately to avoid ghosting
         fetch(`http://localhost:8080/api/wishlist/${user.id}`)
           .then(res => res.json())
-          .then(data => setFavorites(data))
+          .then(data => {
+            if (Array.isArray(data)) {
+                setFavorites(data);
+            }
+          })
           .catch(err => console.error(err));
     }
   }, []);

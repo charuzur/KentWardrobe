@@ -243,7 +243,7 @@ export default function Checkout() {
             <div className="success-details">
                 <p className="success-label">Tracking Number</p>
                 <p className="success-tracking">{completedOrder.orderId}</p>
-                <p className="success-message">Thank you for shopping with Kent's Wardrobe! <br/>Your order has been saved to the database.</p>
+                <p className="success-message">Thank you for shopping with Kent's Wardrobe! <br/>Your order has been completed.</p>
             </div>
             <button className="btn-confirm btn-home" onClick={() => navigate('/')}>Back to Home</button>
           </div>
